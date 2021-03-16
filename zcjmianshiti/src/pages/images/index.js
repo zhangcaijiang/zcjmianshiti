@@ -1,11 +1,7 @@
-import React,{ useState, createContext, useContext } from 'react';
+import React from 'react';
 import { Checkbox } from 'antd';
-// import style from './index.module.less'
 
-const imagesContext = createContext()
-const CheckboxGroup = Checkbox.Group;
 const plainOptions = ['1', '2', '3'];
-const defaultCheckedList = ['1'];
 
 function Page() {
     const [value, setValue] = React.useState(['1']);
@@ -31,14 +27,14 @@ function Page() {
     
 }
  function PictureSelect (props) {
-    let {value, onChange} = props
+    let {value, onChange,pictures} = props
  return(
     <div >
         <Checkbox onClick={(e)=>{
             onChange(e.target.checked ? plainOptions : []);
         }}>全选</Checkbox>
         <div  >
-            {props.pictures.map((item,index)=>{
+            {pictures.map((item,index)=>{
             return(
                 <span key={item.id}>
                     <Checkbox checked={value.indexOf(item.id)>-1} onClick={(e)=>{
@@ -50,7 +46,7 @@ function Page() {
                             onChange(newValue);  
                         }
                     }}></Checkbox>
-                    <img src={item.url}></img>
+                    <img src={item.url} alt=""></img>
                 </span>
             )
             })}
